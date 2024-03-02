@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOO DataPros</title>
+    <!-- Ajouter le lien CDN de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Ajouter le lien CDN de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <style>
+
+         body {
+            background-color: black;
+        }
+body:not(.modal-section) {
+        color: white;
+    }
+      .navbar-custom {
+    background-color: rgb(21, 31, 66);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+        .navbar-custom .navbar-nav {
+        margin-left: 20px; /* Aligne les éléments à droite */
+    }
+        .custom-text::before {
+    content: "...";
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 1.2em;
+}
+#teamModal .modal-body .carousel-inner .carousel-item .text-center img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+#teamCarousel .carousel-inner .carousel-item .text-center {
+        margin-right: 10px; /* Adjust the right margin as needed */
+        margin-left: 10px; /* Adjust the left margin as needed */
+    }
+/* Add this style to enlarge the modal */
+#teamModal .modal-dialog {
+    max-width: 800px; /* Set your desired maximum width */
+}
+
+/* Add this style to center the carousel items */
+#teamCarousel .carousel-inner .carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Add this style to adjust the image size within the carousel */
+#teamCarousel .carousel-inner .carousel-item img {
+    max-width: 100%; /* Make sure the image doesn't exceed the container width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Add this style to increase the font size of the person's information */
+#teamCarousel .carousel-inner .carousel-item p {
+    font-size: 1.2em; /* Adjust the font size according to your preference */
+}
+/* Add this style to set the background color of the modal header */
+#teamModal .modal-header {
+    background-color: rgb(21, 31, 66);
+    color: white; /* Set text color to white for better visibility */
+}
+
+/* Add this style to set the background color of the close button in the modal header */
+#teamModal .modal-header button.close {
+    color: white;
+}
+
+/* Add this style to set the background color of the modal body */
+#teamModal .modal-body {
+    background-color: white; /* Set the desired background color */
+}
+
+/* Add this style to set the background color of the carousel items */
+#teamCarousel .carousel-inner .carousel-item {
+    background-color: white; /* Set the desired background color */
+}
+/* Add this style to apply hover effect to team member images */
+#teamCarousel .carousel-inner .carousel-item .text-center img.team-member-image {
+    transition: transform 0.3s ease-in-out; /* Add smooth transition for the hover effect */
+}
+
+#teamCarousel .carousel-inner .carousel-item .text-center img.team-member-image:hover {
+    transform: scale(1.1); /* Increase the size on hover (adjust the scale factor as needed) */
+}
+/* Add this style to differentiate the names of each team member */
+#teamCarousel .carousel-inner .carousel-item .text-center p {
+    font-size: 1.2em; /* Adjust the font size according to your preference */
+    margin-top: 10px; /* Add some space above the names */
+    transition: color 0.3s ease-in-out; /* Add smooth transition for the color change on hover */
+}
+
+
+#teamCarousel .carousel-inner .carousel-item .text-center p.team-member-name {
+    font-size: 1.2em; /* Taille de police générale pour les noms */
+    margin-top: 10px; /* Espace au-dessus des noms */
+    transition: color 0.3s ease-in-out; /* Ajouter une transition en douceur pour le changement de couleur au survol */
+}
+
+#teamCarousel .carousel-inner .carousel-item .text-center p.team-member-name {
+    font-size: 1.2em; /* Taille de police générale pour les noms */
+    margin-top: 10px; /* Espace au-dessus des noms */
+    transition: color 0.3s ease-in-out; /* Ajouter une transition en douceur pour le changement de couleur au survol */
+}
+
+#teamCarousel .carousel-inner .carousel-item .text-center p.team-member-name.omar-hai:hover {
+    color: rgb(21, 31, 66); /* Couleur spécifique pour Omar Hai au survol (ajustez la couleur selon vos préférences) */
+    font-weight: bold; /* Mettre le nom en gras au survol */
+}
+
+#teamCarousel .carousel-inner .carousel-item .text-center p.team-member-name.mimoune-houbaoui:hover {
+    color: rgb(21, 31, 66);
+    font-weight: bold;
+}
+
+#teamCarousel .carousel-inner .carousel-item .text-center p.team-member-name.omar-berrahou:hover {
+    color: rgb(21, 31, 66);
+    font-weight: bold;
+}
+
+#teamCarousel .carousel-inner .carousel-item .text-center p.team-member-description {
+    font-size: 1em; /* Taille de police générale pour les descriptions */
+    color: #000000; /* Couleur de police générale pour les descriptions */
+}
+.container-fluid {
+        max-width: 1200px; /* Ajustez la largeur maximale selon vos besoins */
+        margin: 0 auto; /* Centre le conteneur sur la page */
+    }
+
+    .row {
+        margin-right: -5px; /* Compense la marge négative sur les colonnes */
+        margin-left: -5px; /* Compense la marge négative sur les colonnes */
+    }
+
+    .col-6 {
+        flex: 0 0 calc(50% - 10px); /* Ajustez la largeur selon vos besoins et réduisez la marge */
+        margin: 0 5px; /* Ajoutez une marge à droite et à gauche pour l'espace entre les colonnes */
+    }
+
+    .project-container {
+        margin-top: 3rem; /* Ajustez la marge supérieure selon vos besoins */
+    }
+
+    #predictionForm {
+        margin-top: 3rem; /* Ajustez la marge supérieure selon vos besoins */
+    }
+
+    html {
+    direction: rtl;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <a class="navbar-brand" href="#">
+            <img src="static/image.png" alt="لوجو HOO DataPros" height="30" class="d-inline-block align-top">
+            HOO DataPros
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-home"></i> الرئيسية
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/" target="_blank">
+                        <i class="fab fa-github"></i> جيتهاب
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-chart-line"></i> تحليل
+                    </a>
+                </li>
+                <li class="nav-item">
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#infoModal">
+        <i class="fas fa-info-circle"></i> حول
+    </a>
+</li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Pourquoi ce projet?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-dark">Ce projet a été réalisé dans le cadre de la compétition Datathon X organisée par l'École Nationale des Sciences Appliquées d'Oujda dans sa deuxième édition. La compétition consiste à présenter des projets à choix...</p>
+                <!-- Ajoutez des images ci-dessous avec une taille précise -->
+                <img src="static/mimoune.png" alt="Image 1" style="width: 200px; height: 150px;">
+                <img src="static/image.png" alt="Image 2" style="width: 200px; height: 150px;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        // Attacher un gestionnaire d'événement au clic du lien
+        $('.nav-link').click(function(){
+            // Afficher le modal en utilisant son identifiant
+            $('#infoModal').modal('show');
+        });
+    });
+</script>
+
+
+<div class="container-fluid custom-container">
+    <div class="row justify-content-end"> <!-- Ajout de la classe justify-content-end -->
+      <div class="col-6 mt-3 text-center position-relative">
+            <img src="static/mimoune.png" alt="Mimoune" class="img-fluid rounded" style="border: 1px solid white; background-color: rgb(21, 31, 66);" onclick="playAudio()">
+    <div class="custom-text position-absolute top-0 start-50 translate-middle-x text-white">
+        <span class="ellipsis"></span>
+        عمر صورني صورني و عطيها لموديل
+    </div>
+
+    <h1 class="mb-4"></h1>
+
+
+    <form action="/prediction2" method="post" class="border p-4 mb-4">
+    <div class="mb-3">
+        <label for="text" class="form-label">أدخل النص:</label>
+        <input type="text" id="text" name="text" class="form-control" required>
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+        <label for="languageSelect" class="me-2">اختر اللغة:</label>
+        <select id="languageSelect" class="form-select" style="width: 50%;">
+            <option value="ar-SA">العربية</option>
+            <option value="fr-FR">الفرنسية</option>
+            <option value="en-US">الإنجليزية</option>
+        </select>
+        <button id="startRecording" class="btn btn-primary me-2"><i class="fas fa-microphone"></i> بدء التسجيل</button>
+        <button id="stopRecording" class="btn btn-danger" disabled><i class="fas fa-microphone-slash"></i> إيقاف التسجيل</button>
+    </div>
+
+
+
+
+
+
+        <p id="transcription"></p>
+
+        <button type="submit" class="btn btn-primary"><i class="fas fa-arrow-circle-right"></i> تنبؤ</button>
+{% if text_prediction %}
+    <p>التنبؤ: {{ text_prediction }}</p>
+{% endif %}
+
+    </form>
+
+    <!-- Modal for Positive Prediction -->
+<div class="modal fade" id="positiveModal" tabindex="-1" role="dialog" aria-labelledby="positiveModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="positiveModalLabel">شكرًا لمساهمتك!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-dark">
+                كان من دواعي سرورنا استلام تعليقك الإيجابي. رضاك يهمنا.
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal for Negative Prediction -->
+<div class="modal fade" id="negativeModal" tabindex="-1" role="dialog" aria-labelledby="negativeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="negativeModalLabel">شكرًا لمساهمتك!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-dark">
+                نحن نقدر ملاحظاتك. لقد تم تسجيل آرائك، وسنسعى لتحسين نموذجنا في أقرب وقت ممكن.
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal for Neutral Prediction -->
+<div class="modal fade" id="neutralModal" tabindex="-1" role="dialog" aria-labelledby="neutralModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="neutralModalLabel">شكرًا لمساهمتك!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-dark">
+                تعليقك مهم. سنأخذه في الاعتبار لتحسين نموذجنا أكثر.
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Add Bootstrap JS CDN link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for displaying modals and speech recognition -->
+    <script>
+     document.addEventListener('DOMContentLoaded', function() {
+    const afficher_modal = '{{ afficher_modal }}';
+    console.log('afficher_modal value:', afficher_modal);
+
+    if (afficher_modal === 'positif') {
+        $('#positiveModal').modal('show');
+    } else if (afficher_modal === 'negatif') {
+        $('#negativeModal').modal('show');
+    } else if (afficher_modal === 'neutre') {
+        $('#neutralModal').modal('show');
+    } else {
+        console.log('No matching modal to display');
+        // Handle other cases or leave empty if not needed
+    }
+});
+
+
+
+
+            const startRecordingBtn = document.getElementById('startRecording');
+            const stopRecordingBtn = document.getElementById('stopRecording');
+            const transcriptionOutput = document.getElementById('text'); // Changed ID to match the input field
+            const languageSelect = document.getElementById('languageSelect');
+
+            let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = languageSelect.value;
+
+            let isRecording = false;
+
+            startRecordingBtn.addEventListener('click', function() {
+                recognition.lang = languageSelect.value;
+                recognition.start();
+                startRecordingBtn.disabled = true;
+                stopRecordingBtn.disabled = false;
+                isRecording = true;
+            });
+
+            stopRecordingBtn.addEventListener('click', function() {
+                recognition.stop();
+                startRecordingBtn.disabled = false;
+                stopRecordingBtn.disabled = true;
+                isRecording = false;
+            });
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                transcriptionOutput.value = transcript; // Updated to set the input field value
+            };
+
+            recognition.onend = function() {
+                if (isRecording) {
+                    recognition.start();
+                }
+
+        };
+    </script>
+</div>
+
+<div class="col-6 mt-3 project-container" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: rgb(21, 31, 66); border: none;">
+            <div class="project-info">
+              <h2>مشروع إعطاء تسمية للصور</h2>
+                <p> التصوير الآلي للصورة هو عملية تقنية تعتمد على الحوار ما بين الحاسوب والصورة. البرمجيات تقوم بإنشاء نص وصفي للصور، وهاد الشغل يتضمن استعمال خوارزميات تجميع مجموعة زوجات من الصور والتوصيفات ليها. الصور تتعالج باستعمال تقنيات تكنولوجيا الذكاء الاصطناعي باش يتماشا مع متطلبات تكنولوجيا التعلم الآلي. النماذج اللي كتعطي وصف للصور كتستعمل تقنيات مختلطة من رؤية الحواسيب ومعالجة اللغة الطبيعية. تستعمل الشبكات العصبونية لتحليل الملامح البصرية ديال الصورة، وتستعمل الشبكات العصبونية الأخرى لخلق توالي نصوصي للصور. التدريب ديال هاد النماذج كيكون بتدريبات معمولة بشكل منظم، حيث كايتعلم النموذج فمدة التدريب كيفاش يربط بين الملامح اللي كيشوفها وبين التوصيف اللي كيكون ليها مناسب. بعد التدريب، يمكن استعمال النموذج باش يخلق وصف لصور جديدة، بمجرد تزويدو بالصورة واستعمال الملامح البصرية باش يوليف وصف توالي. تقنيات متقدمة مثل آليات الانتباه ونماذج اللغة المتقدمة كتحسن دقة وسلاسة الوصف اللي كيتم إنشاؤه فهاد النطاق الدينامي.
+                </p>
+                 <div class="mt-3">
+                    <button type="button" class="btn btn-primary" onclick="showPredictionForm()">بدء التنبؤ</button>
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#teamModal">اكتشاف الفريق</button>
+                </div>
+            </div>
+<div class="container mt-5">
+
+    {% if prediction %}
+        <div class="mt-4">
+            <h2>النتيجة</h2>
+            <img src="data:image/jpeg;base64,{{ image_data }}" alt="صورة مرفوعة" class="img-fluid mb-3" id="uploadedImage">
+            <audio id="audioPlayer" controls style="display:none;"></audio>
+            <button class="btn btn-primary" onclick="readPredictions('en')">قراءة التنبؤ (الإنجليزية)</button>
+            <button class="btn btn-primary" onclick="readPredictions('ar')">قراءة التنبؤ (العربية)</button>
+            <p class="mt-3"><strong>التنبؤ (الإنجليزية):</strong> {{ prediction }}</p>
+            <p><strong>التنبؤ (العربية):</strong> {{ translated_prediction }}</p>
+        </div>
+    {% else %}
+        <form method="post" action="/predict" enctype="multipart/form-data" class="mt-4" id="upload-form">
+    <div class="mb-3">
+        <label for="file" class="form-label">اختر ملف صورة</label>
+        <input type="file" class="form-control" name="file" accept=".png, .jpg, .jpeg" required>
+    </div>
+    <button type="submit" class="btn btn-primary">توقع</button>
+
+    <!-- Bouton pour effacer le fichier -->
+    <button type="button" class="btn btn-danger" onclick="clearFile()">Effacer</button>
+</form>
+
+<script>
+    function clearFile() {
+        // Réinitialiser la valeur du champ de fichier
+        document.getElementById('upload-form').reset();
+    }
+</script>
+
+</div>
+        </form>
+    {% endif %}
+
+<script>
+    var arabicVoice;
+    var englishVoice;
+
+    function loadVoices() {
+        // Charger les voix disponibles
+        var voices = window.speechSynthesis.getVoices();
+
+        // Trouver la voix en arabe et en anglais
+        arabicVoice = voices.find(voice => voice.lang === 'ar');
+        englishVoice = voices.find(voice => voice.lang === 'en-US'); // Vous pouvez ajuster la langue en conséquence
+
+        // Afficher les voix disponibles dans la console pour le débogage
+        console.log(voices);
+    }
+
+    window.onload = function () {
+        // Appeler la fonction pour charger les voix une fois la page entièrement chargée
+        loadVoices();
+    };
+
+    var predictionTextEn = "{{ prediction }}";
+    var predictionTextAr = "{{ translated_prediction }}";
+
+    function readPredictions(language) {
+        // Charger les voix si elles ne sont pas encore disponibles
+        if (!arabicVoice || !englishVoice) {
+            loadVoices();
+        }
+
+        var predictions = (language === 'en') ? predictionTextEn : predictionTextAr;
+        var utterance = new SpeechSynthesisUtterance(predictions);
+
+        if (language === 'ar' && arabicVoice) {
+            utterance.voice = arabicVoice;
+            utterance.lang = 'ar';
+        } else if (language === 'en' && englishVoice) {
+            utterance.voice = englishVoice;
+            utterance.lang = 'en-US';
+        }
+
+        speechSynthesis.speak(utterance);
+    }
+</script>
+        </div>
+    </div>
+
+</div>
+<!-- Formulaire de collecte d'informations -->
+
+
+<!-- Modal pour l'équipe -->
+<div class="modal fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="teamModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-section" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="teamModalLabel">الفريق</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Carousel for the information of each person -->
+                <div id="teamCarousel" class="carousel slide" data-ride="carousel">
+<div class="carousel-inner">
+    <div class="carousel-item active">
+<div class="d-flex justify-content-between">
+    <div class="text-center mb-3">
+        <img src="static/omar-hai.jpeg" alt="Omar Hai" class="team-member-image">
+        <p class="team-member-name omar-hai">عمر حي</p>
+        <p class="team-member-description omar-hai">طالب في ENSAH، هندسة البيانات وعلوم البيانات، أمان المعلومات في ENSIIE - IMT</p>
+    </div>
+
+    <div class="text-center mb-3">
+        <img src="static/mimoune-houbaoui.jpeg" alt="Mimoune Houbaoui" class="team-member-image">
+        <p class="team-member-name mimoune-houbaoui">ميمون حوباوي</p>
+        <p class="team-member-description mimoune-houbaoui">طالب في التحول الرقمي الصناعي في ENSABM</p>
+    </div>
+
+    <div class="text-center mb-3">
+        <img src="static/omar-berrahou.jpeg" alt="Omar Berrahou" class="team-member-image">
+        <p class="team-member-name omar-berrahou">عمر برحو</p>
+        <p class="team-member-description omar-berrahou">طالب في الماجستير المتخصص في هندسة وتكنولوجيا التعليم والتكوين في كلية العلوم بن مسيك</p>
+    </div>
+</div>
+    </div>
+</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Nouvelle section pour afficher le résultat -->
+<div id="resultSection" class="container mt-3" style="display: none; border: 1px solid white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h3>نتيجة التنبؤ</h3>
+    <div id="greeting"></div>
+    <form id="photoForm" style="margin-top: 10px;">
+
+        <!-- Photo Input Fields -->
+        <script>
+            function submitPrediction() {
+                const photoCount = parseInt(document.getElementById('photoCount').value);
+
+                if (isNaN(photoCount) || photoCount <= 0) {
+                    alert("Veuillez saisir un nombre valide de photos.");
+                    return;
+                }
+
+                // Récupérer le nom complet
+                const fullName = document.getElementById('fullName').value;
+
+                // Afficher le message de salutation dans la nouvelle section
+                document.getElementById('greeting').innerHTML = "<p>سلام " + fullName + "!</p>";
+
+                // Masquer le formulaire de prédiction
+                document.getElementById('predictionForm').style.display = 'none';
+
+                // Afficher la nouvelle section
+                document.getElementById('resultSection').style.display = 'block';
+
+                const photoForm = document.getElementById('photoForm');
+                for (let i = 1; i <= photoCount; i++) {
+                    const fileInput = document.createElement('input');
+                    fileInput.type = 'file';
+                    fileInput.id = 'photoUpload' + i;
+                    fileInput.name = 'photoUpload' + i;
+                    fileInput.setAttribute('multiple', '');
+                    fileInput.style.display = 'inline-block'; // Utiliser 'inline-block' pour afficher sur la même ligne
+
+                    const label = document.createElement('label');
+                    label.htmlFor = 'photoUpload' + i;
+                    label.textContent = 'الصورة ' + i + ': ';
+                    label.style.display = 'inline-block'; // Utiliser 'inline-block' pour afficher sur la même ligne
+
+                    // Ajouter les nouveaux champs au formulaire
+                    photoForm.appendChild(label);
+                    photoForm.appendChild(fileInput);
+                }
+            }
+        </script>
+
+        <!-- Submit Button -->
+    </form>
+    <button type="button" class="btn btn-primary" onclick="submitPhotos()">تنبؤ</button>
+
+</div>
+
+
+
+
+
+
+<!-- Ajouter le script de Bootstrap (jQuery requis) -->
+<script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+
+ function playAudio() {
+                    var audioPlayer = new Audio("{{ url_for('static', filename='WhatsApp Ptt 2024-02-18 at 1.03.50 AM.ogg') }}");
+                    audioPlayer.play();
+                }
+
+                // Invoke playAudio() when the page is fully loaded
+                document.addEventListener('DOMContentLoaded', function() {
+                    playAudio();
+                });
+
+
+
+
+    function showPredictionForm() {
+        // Afficher le formulaire
+        document.getElementById('predictionForm').style.display = 'block';
+    }
+
+
+function submitPhotos() {
+    // Récupérer les informations nécessaires du formulaire des photos
+    const photoFiles = document.getElementById('photoUpload').files;
+
+    console.log("Nombre de photos téléchargées:", photoFiles.length);
+    console.log("Liste des photos:", photoFiles);
+
+
+    // Réinitialiser le formulaire après soumission si nécessaire
+    document.getElementById('photoForm').reset();
+}
+
+</script>
+
+</body>
+</html>
