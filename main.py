@@ -85,7 +85,6 @@ def beam_search_generator(image_features, K_beams=3, log=False):
     return final_caption, confidence
 
 
-# Route for the home page
 @app.route('/')
 def home():
     return render_template('img.html')
